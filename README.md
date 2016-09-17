@@ -10,14 +10,15 @@ Installs PostgreSQL server on Debian and Ubuntu servers.
 
     - hosts: db-server
       vars:
-        jenkins_hostname: jenkins.example.com
+        postgresql_version: 9.5
+        postgresql_with_postgis: yes
       roles:
-        - geerlingguy.jenkins
+        - AlphaNodes.postgresql
 
 ## License
 
-MIT (Expat) / BSD
+GPL Version 3
 
 ## Author Information
 
-This role was created in 2014 by [Jeff Geerling](http://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+This role was created in 2016 by [Alexander Meindl](https://alphanodes.com/).
