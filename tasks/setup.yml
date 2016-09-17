@@ -6,6 +6,15 @@
     cache_valid_time: '{{ apt_cache_valid_time | default(600) }}'
   with_items: '{{ postgresql_packages }}'
 
+- name: be sure postgis packages are installed
+  apt:
+    name: '{{ item }}'
+    state: "{{ apt_state | default('present') }}"
+    update_cache: "{{ apt_update_cache | default('yes') }}"
+    cache_valid_time: '{{ apt_cache_valid_time | default(600) }}'
+  with_items: '{{ postgresql_postgis_packages }}'
+  when: postgresql_with_postgis
+
 - name: Ensure postgresql is started and enabled to start at boot.
   service:
     name: postgresql

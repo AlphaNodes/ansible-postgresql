@@ -6,11 +6,13 @@ postgresql_postgis_version: 2.2
 
 # php5-pgsql is required for drush sync
 postgresql_packages:
- - postgresql-{{ postgresql_version }}-postgis-{{ postgresql_postgis_version }}
- - postgresql-contrib-{{ postgresql_version }}
- - python-psycopg2
- - php5-pgsql
- - pgbadger
+  - postgresql-contrib-{{ postgresql_version }}
+  - python-psycopg2
+  - pgbadger
+
+postgresql_with_postgis: no
+postgresql_postgis_packages:
+  - postgresql-{{ postgresql_version }}-postgis-{{ postgresql_postgis_version }}
 
 postgresql_with_zabbix_monitoring: yes
 

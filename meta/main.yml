@@ -1,9 +1,9 @@
 ---
 dependencies:
-  - { role: alphanodes.postgresql-client }
+  - { role: AlphaNodes.postgresql-client }
 
 galaxy_info:
-  author: alphanodes
+  author: alexandermeindl
   description: PostgreSQL server for Debian and Ubuntu.
   company: AlphaNodes GmbH
   license: GPL v3.0
