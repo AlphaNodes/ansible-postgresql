@@ -1,0 +1,33 @@
+- name: be sure postgresql are installed
+  apt:
+    name: '{{ item }}'
+    state: "{{ apt_state | default('present') }}"
+    update_cache: "{{ apt_update_cache | default('yes') }}"
+    cache_valid_time: '{{ apt_cache_valid_time | default(600) }}'
+  with_items: '{{ postgresql_packages }}'
+
+- name: Ensure postgresql is started and enabled to start at boot.
+  service:
+    name: postgresql
+    state: started
+    enabled: yes
+
+- name: Install postgresql zabbix configuration
+  tags: zabbix-agent
+  copy:
+    src: userparameter_pgsql.conf
+    dest: /etc/zabbix/zabbix_agentd.conf.d/userparameter_pgsql.conf
+  notify: restart zabbix-agent
+  when: postgresql_with_zabbix_monitoring
+
+- name: Update postgresql configuration
+  template:
+    src: '{{ postgresql_version }}/main/postgresql.j2'
+    dest: '/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf'
+  notify: restart postgresql
+
+- name: Update postgresql hba configuration
+  template:
+    src: '{{ postgresql_version }}/main/pg_hba.j2'
+    dest: '/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf'
+  notify: restart postgresql

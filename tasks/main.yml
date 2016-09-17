@@ -1,0 +1,8 @@
+- include: setup.yml
+  tags: postgresql
+
+- include: users.yml
+  tags: postgresql
+
+- include: databases.yml
+  tags: postgresql
