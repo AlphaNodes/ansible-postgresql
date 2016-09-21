@@ -4,7 +4,6 @@
 postgresql_version: 9.5
 postgresql_postgis_version: 2.2
 
-# php5-pgsql is required for drush sync
 postgresql_packages:
   - postgresql-contrib-{{ postgresql_version }}
   - python-psycopg2
