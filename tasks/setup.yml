@@ -25,7 +25,7 @@
   tags: zabbix-agent
   copy:
     src: userparameter_pgsql.conf
-    dest: /etc/zabbix/zabbix_agentd.conf.d/userparameter_pgsql.conf
+    dest: /etc/zabbix/zabbix_agentd.{{ 'd' if zabbix_use_repo is defined and zabbix_use_repo else 'conf.d' }}/userparameter_pgsql.conf
   notify: restart zabbix-agent
   when: postgresql_with_zabbix_monitoring
 
