@@ -21,4 +21,4 @@ GPL Version 3
 
 ## Author Information
 
-This role was created in 2016 by [Alexander Meindl](https://alphanodes.com/).
+This role was created in 2017 by [AlphaNodes](https://alphanodes.com/).

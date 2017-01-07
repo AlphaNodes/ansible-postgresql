@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  remote_user: root
+
+  roles:
+    - AlphaNodes.postgresql-client
+    - role_under_test
