@@ -1,4 +1,4 @@
-- name: be sure postgresql are installed
+- name: Be sure PostgreSQL are installed
   apt:
     name: '{{ item }}'
     state: "{{ apt_state | default('present') }}"
@@ -6,7 +6,7 @@
     cache_valid_time: '{{ apt_cache_valid_time | default(600) }}'
   with_items: '{{ postgresql_packages }}'
 
-- name: be sure postgis packages are installed
+- name: Be sure PostGIS packages are installed
   apt:
     name: '{{ item }}'
     state: "{{ apt_state | default('present') }}"
@@ -15,13 +15,13 @@
   with_items: '{{ postgresql_postgis_packages }}'
   when: postgresql_with_postgis
 
-- name: Ensure postgresql is started and enabled to start at boot.
+- name: Ensure PostgreSQL is started and enabled to start at boot.
   service:
     name: postgresql
     state: started
     enabled: yes
 
-- name: Install postgresql zabbix configuration
+- name: Install PostgreSQL zabbix configuration
   tags: zabbix-agent
   copy:
     src: userparameter_pgsql.conf
@@ -29,13 +29,13 @@
   notify: restart zabbix-agent
   when: postgresql_with_zabbix_monitoring
 
-- name: Update postgresql configuration
+- name: Update PostgreSQL configuration
   template:
     src: '{{ postgresql_version }}/main/postgresql.j2'
     dest: '/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf'
   notify: restart postgresql
 
-- name: Update postgresql hba configuration
+- name: Update PostgreSQL hba configuration
   template:
     src: '{{ postgresql_version }}/main/pg_hba.j2'
     dest: '/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf'
