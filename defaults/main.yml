@@ -37,10 +37,16 @@ postgresql_work_mem: 4MB
 postgresql_maintenance_work_mem: 64MB
 postgresql_synchronous_commit: yes
 postgresql_deadlock_timeout: 1s
+postgresql_checkpoint_timeout: 15min
 postgresql_max_wal_size: 2GB
 postgresql_min_wal_size: 1GB
-postgresql_checkpoint_completion_target: 0.9
+# (checkpoint_timeout - 2min) / checkpoint_timeout)
+# see https://blog.2ndquadrant.com/basics-of-tuning-checkpoints/
+postgresql_checkpoint_completion_target: 0.86
 postgresql_wal_buffers: 7864kB
+
+# only used for postgresql version 9.3
+postgresql_checkpoint_segments: 16
 
 postgresql_log_destination: stderr
 postgresql_log_statement: none

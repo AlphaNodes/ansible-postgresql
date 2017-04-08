@@ -183,8 +183,8 @@ wal_buffers = {{ postgresql_wal_buffers }}			# min 32kB, -1 sets based on shared
 
 # - Checkpoints -
 
-#checkpoint_segments = 3		# in logfile segments, min 1, 16MB each
-#checkpoint_timeout = 5min		# range 30s-1h
+checkpoint_segments = {{ postgresql_checkpoint_segments }}		# in logfile segments, min 1, 16MB each
+checkpoint_timeout = {{ postgresql_checkpoint_timeout }}		# range 30s-1h
 checkpoint_completion_target = {{ postgresql_checkpoint_completion_target }}	# checkpoint target duration, 0.0 - 1.0
 #checkpoint_warning = 30s		# 0 disables
 
