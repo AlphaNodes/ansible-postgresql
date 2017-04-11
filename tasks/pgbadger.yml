@@ -1,0 +1,31 @@
+
+- name: Be sure pgBadger packages are installed
+  apt:
+    name: '{{ item }}'
+    state: "{{ apt_state | default('present') }}"
+    update_cache: "{{ apt_update_cache | default('yes') }}"
+    cache_valid_time: '{{ apt_cache_valid_time | default(600) }}'
+  with_items: '{{ postgresql_pgbadger_packages }}'
+
+- name: Be sure pgBadger output directory exists
+  file:
+    path: '{{ postgresql_pgbadger_output_dir }}'
+    state: directory
+    recurse: yes
+    mode: 0755
+
+- name: Update pgBadger user access
+  htpasswd:
+    path: /etc/nginx/.htpasswd_pgbadger
+    name: '{{ postgresql_pgbadger_user }}'
+    password: '{{ postgresql_pgbadger_password }}'
+    owner: root
+    group: "{{ nginx_group | default('www-data') }}"
+    mode: 0640
+
+- name: Provide pgBadger nginx configuration
+  tags: nginx
+  template:
+    src: nginx/pgbadger.j2
+    dest: /etc/nginx/pgbadger.conf
+  notify: reload nginx

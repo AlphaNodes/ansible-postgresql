@@ -7,6 +7,16 @@ postgresql_postgis_version: 2.3
 postgresql_packages:
   - postgresql-contrib-{{ postgresql_version }}
   - python-psycopg2
+
+# nginx is required, if postgresql_with_pgbadger: yes
+postgresql_with_pgbadger: no
+postgresql_pgbadger_output_dir: /var/lib/pgbadger
+# nginx base auth user
+postgresql_pgbadger_user: pgbadger
+# nginx base auth passwords (leave empty, if you do not want base auth protection)
+postgresql_pgbadger_password: ''
+# debian packages
+postgresql_pgbadger_packages:
   - pgbadger
 
 postgresql_with_postgis: no

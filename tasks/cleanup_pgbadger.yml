@@ -1,0 +1,21 @@
+
+- name: Remove pgBadger packages
+  apt:
+    name: '{{ item }}'
+    state: absent
+  with_items: '{{ postgresql_pgbadger_packages }}'
+
+- name: Remove  pgBadger output directory
+  file:
+    path: '{{ postgresql_pgbadger_output_dir }}'
+    state: absent
+
+- name: Remove pgBadger user access file
+  file:
+    path: /etc/nginx/.htpasswd_pgbadger
+    state: absent
+
+- name: Remove pgBadger nginx configuration
+  file:
+    path: /etc/nginx/pgbadger.conf
+    state: absent
