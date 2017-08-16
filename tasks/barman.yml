@@ -1,0 +1,23 @@
+# barman ssh key should get access to postgres account
+
+- name: Configure barman ssh access for postgres user
+  authorized_key:
+    user: postgres
+    key: '{{ postgresql_barman_ssh_public_key }}'
+    state: present
+  when: postgresql_barman_ssh_public_key != ''
+
+- name: Check if ssh private key for barman server is provided
+  local_action: stat path="{{ playbook_dir }}/files/barman_access/{{ group_names[0] }}_id_rsa"
+  ignore_errors: True
+  register: key
+
+- name: Install ssh private key for barman server (if provided)
+  copy:
+    src: barman_access/{{ group_names[0] }}_id_rsa
+    dest: /var/lib/postgresql/.ssh/id_rsa
+    owner: postgres
+    group: postgres
+    force: no
+    mode: 0600
+  when: key.stat.exists

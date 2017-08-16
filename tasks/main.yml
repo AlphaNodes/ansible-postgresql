@@ -6,3 +6,7 @@
 
 - include: databases.yml
   tags: postgresql
+
+- include: barman.yml
+  tags: postgresql,barman
+  when: postgresql_with_barman

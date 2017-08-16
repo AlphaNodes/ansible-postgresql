@@ -85,3 +85,9 @@ postgresql_users: []
 
 # Databases.
 postgresql_databases: []
+
+postgresql_with_barman: no
+# ssh public key, which get access to postgres user
+postgresql_barman_ssh_public_key: ''
+# ssh private key for access to barman server as barman user
+postgresql_ssh_private_key: ''
