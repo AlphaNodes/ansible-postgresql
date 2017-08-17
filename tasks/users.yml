@@ -8,4 +8,4 @@
     role_attr_flags: "{{ item.role_flags | default('NOSUPERUSER,CREATEDB') }}"
     state: "{{ item.state | default('present') }}"
   with_items: "{{ postgresql_users }}"
-  no_log: true
+  no_log: yes

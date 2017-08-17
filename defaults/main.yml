@@ -87,7 +87,15 @@ postgresql_users: []
 postgresql_databases: []
 
 postgresql_with_barman: no
+postgresql_barman_user: barman
+# ssh host
+postgresql_barman_host: localhost
+# ssh port
+postgresql_barman_port: 22
+
+# you have to set a password
+# postgresql_barman_password:
+
 # ssh public key, which get access to postgres user
 postgresql_barman_ssh_public_key: ''
-# ssh private key for access to barman server as barman user
-postgresql_ssh_private_key: ''
+postgresql_barman_archive_command: ''

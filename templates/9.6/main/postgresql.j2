@@ -212,9 +212,9 @@ checkpoint_completion_target = {{ postgresql_checkpoint_completion_target }}	# c
 
 # - Archiving -
 
-#archive_mode = off		# enables archiving; off, on, or always
+archive_mode = {{ 'on' if postgresql_with_barman else 'off' }}		# enables archiving; off, on, or always
 				# (change requires restart)
-#archive_command = ''		# command to use to archive a logfile segment
+archive_command = '{{ postgresql_barman_archive_command if postgresql_with_barman else '' }}'		# command to use to archive a logfile segment
 				# placeholders: %p = path of file to archive
 				#               %f = file name only
 				# e.g. 'test ! -f /mnt/server/archivedir/%f && cp %p /mnt/server/archivedir/%f'
