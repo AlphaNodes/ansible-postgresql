@@ -1,5 +1,5 @@
 - set_fact: postgresql_barman_archive_command='rsync -a -e "ssh -p {{ postgresql_barman_port }}" %p {{ postgresql_barman_user }}@{{ postgresql_barman_host }}:{{ postgresql_barman_dir }}/{{ postgresql_barman_name | mandatory }}/incoming/%f'
-  when: postgresql_barman_archive_command is undefined
+  when: postgresql_with_barman and postgresql_barman_archive_command is undefined
 
 - name: Be sure PostgreSQL are installed
   apt:
