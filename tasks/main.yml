@@ -1,12 +1,12 @@
-- include: setup.yml
+- include_tasks: setup.yml
   tags: postgresql
 
-- include: users.yml
+- include_tasks: users.yml
   tags: postgresql
 
-- include: databases.yml
+- include_tasks: databases.yml
   tags: postgresql
 
-- include: barman.yml
+- include_tasks: barman.yml
   tags: postgresql,barman
   when: postgresql_with_barman

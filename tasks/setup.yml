@@ -7,13 +7,13 @@
     state: present
   with_items: '{{ postgresql_packages }}'
 
-- include: postgis.yml
+- include_tasks: postgis.yml
   when: postgresql_with_postgis
 
-- include: pgbadger.yml
+- include_tasks: pgbadger.yml
   when: postgresql_with_pgbadger
 
-- include: cleanup_pgbadger.yml
+- include_tasks: cleanup_pgbadger.yml
   when: not postgresql_with_pgbadger
 
 - name: Ensure PostgreSQL is started and enabled to start at boot.
