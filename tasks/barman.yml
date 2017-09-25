@@ -12,12 +12,27 @@
     state: present
   when: postgresql_barman_ssh_public_key != ''
 
-- name: Check if ssh private key for barman server is provided
+- name: Check if ssh private key for barman server is provided by host
+  local_action: stat path="{{ playbook_dir }}/files/barman_access/{{ inventory_hostname }}_id_rsa"
+  ignore_errors: True
+  register: key_by_host
+
+- name: Check if ssh private key for barman server is provided by group
   local_action: stat path="{{ playbook_dir }}/files/barman_access/{{ group_names[0] }}_id_rsa"
   ignore_errors: True
-  register: key
+  register: key_by_group
 
-- name: Install ssh private key for barman server (if provided)
+- name: Install ssh private key for barman server by host (if provided)
+  copy:
+    src: barman_access/{{ inventory_hostname }}_id_rsa
+    dest: /var/lib/postgresql/.ssh/id_rsa
+    owner: postgres
+    group: postgres
+    force: no
+    mode: 0600
+  when: key_by_host.stat.exists
+
+- name: Install ssh private key for barman server by group (if provided)
   copy:
     src: barman_access/{{ group_names[0] }}_id_rsa
     dest: /var/lib/postgresql/.ssh/id_rsa
@@ -25,7 +40,7 @@
     group: postgres
     force: no
     mode: 0600
-  when: key.stat.exists
+  when: not key_by_host.stat.exists and key_by_group.stat.exists
 
 - name: Create barman postgresql user
   become_user: postgres
