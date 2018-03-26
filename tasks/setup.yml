@@ -41,3 +41,11 @@
     src: pg_hba.j2
     dest: '/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf'
   notify: restart postgresql
+
+- name: Install PostgreSQL scripts to /usr/local/bin
+  copy:
+    src: bin/
+    dest: /usr/local/bin/
+    owner: root
+    group: root
+    mode: 0755

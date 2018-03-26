@@ -4,9 +4,11 @@
 postgresql_version: 9.6
 postgresql_postgis_version: 2.3
 
+# libdbd-pg-perl is required for tuning script
 postgresql_packages:
   - postgresql-contrib-{{ postgresql_version }}
   - python-psycopg2
+  - libdbd-pg-perl
 
 # nginx is required, if postgresql_with_pgbadger: yes
 postgresql_with_pgbadger: no
