@@ -50,6 +50,7 @@
     sysctl_set: yes
     state: present
     reload: yes
+  when: ansible_virtualization_type == 'kvm'
 
 - name: Install PostgreSQL scripts to /usr/local/bin
   copy:
