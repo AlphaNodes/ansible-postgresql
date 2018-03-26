@@ -42,6 +42,15 @@
     dest: '/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf'
   notify: restart postgresql
 
+# see https://www.postgresql.org/docs/9.3/static/kernel-resources.html
+- name: Setup sysctl vm.overcommit_memory for more robust system behavior
+  sysctl:
+    name: vm.overcommit_memory
+    value: 2
+    sysctl_set: yes
+    state: present
+    reload: yes
+
 - name: Install PostgreSQL scripts to /usr/local/bin
   copy:
     src: bin/
