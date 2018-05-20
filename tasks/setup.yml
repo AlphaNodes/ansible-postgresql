@@ -32,7 +32,7 @@
 
 - name: Update PostgreSQL configuration
   template:
-    src: '{{ postgresql_version }}/main/postgresql.j2'
+    src: postgresql.j2
     dest: '/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf'
   notify: restart postgresql
 
