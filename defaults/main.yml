@@ -8,7 +8,7 @@ postgresql_postgis_version: 2.4
 postgresql_packages:
   - postgresql-{{ postgresql_version }}
   - postgresql-contrib-{{ postgresql_version }}
-  - python-psycopg2
+  - python3-psycopg2
   - libdbd-pg-perl
 
 # nginx is required, if postgresql_with_pgbadger: yes
