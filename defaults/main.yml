@@ -21,6 +21,7 @@ postgresql_pgbadger_password: ''
 # debian packages
 postgresql_pgbadger_packages:
   - pgbadger
+  - python3-passlib
 
 postgresql_with_postgis: no
 postgresql_postgis_packages:
