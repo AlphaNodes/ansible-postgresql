@@ -45,7 +45,7 @@
     dest: '/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf'
     owner: '{{ postgresql_user }}'
     group: '{{ postgresql_group }}'
-    mode: 0600
+    mode: 0640
   notify: restart postgresql
 
 - name: Check if PostgreSQL database is initialized.

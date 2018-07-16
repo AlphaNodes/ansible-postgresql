@@ -1,6 +1,9 @@
 - include_tasks: setup.yml
   tags: postgresql
 
+- include_tasks: locales.yml
+  tags: postgresql
+
 - include_tasks: users.yml
   tags: postgresql
 

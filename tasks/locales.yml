@@ -1,0 +1,16 @@
+- name: Ensure all configured locales are present.
+  locale_gen:
+    name: '{{ item }}'
+    state: present
+  register: locale_gen_result
+  with_items:
+    - '{{ postgresql_lc_messages }}'
+    - '{{ postgresql_lc_monetary }}'
+    - '{{ postgresql_lc_numeric }}'
+    - '{{ postgresql_lc_time }}'
+
+- name: Force-restart PostgreSQL after new locales are generated.
+  systemd:
+    name: postgresql
+    state: restarted
+  when: locale_gen_result.changed
