@@ -3,6 +3,7 @@
     name: '{{ item }}'
     state: present
   register: locale_gen_result
+  when: item != 'C'
   with_items:
     - '{{ postgresql_lc_messages }}'
     - '{{ postgresql_lc_monetary }}'
