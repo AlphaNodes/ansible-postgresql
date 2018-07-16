@@ -2,6 +2,9 @@
 
 Installs PostgreSQL server on Debian and Ubuntu servers.
 
+[![Build Status](https://travis-ci.org/AlphaNodes/ansible-postgresql.svg?branch=master)](https://travis-ci.org/AlphaNodes/ansible-postgresql)
+
+
 ## Dependencies
 
   - AlphaNnodes.postgresql-client
@@ -10,7 +13,7 @@ Installs PostgreSQL server on Debian and Ubuntu servers.
 
     - hosts: db-server
       vars:
-        postgresql_version: 9.5
+        postgresql_version: 9.6
         postgresql_with_postgis: yes
       roles:
         - AlphaNodes.postgresql
