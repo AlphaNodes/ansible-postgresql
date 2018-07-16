@@ -11,6 +11,8 @@ script:
   # Configure test script so we can run extra tests after playbook is run.
   - export container_id=$(date +%s)
   - export cleanup=false
+  - export postgresql_bin_dir=/usr/lib/postgresql/9.6/bin
+  - export postgresql_data_dir=/var/lib/postgresql/9.6/main
 
   # Download test shim.
   - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/geerlingguy/73ef1e5ee45d8694570f334be385e181/raw/
