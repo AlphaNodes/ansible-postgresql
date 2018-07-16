@@ -31,7 +31,7 @@
     src: userparameter_pgsql.conf
     dest: /etc/zabbix/zabbix_agentd.{{ 'd' if zabbix_use_repo is defined and zabbix_use_repo else 'conf.d' }}/userparameter_pgsql.conf
   notify: restart zabbix-agent
-  when: zabbix_config_exists.stat.exists == True && postgresql_with_zabbix_monitoring
+  when: zabbix_config_exists.stat.exists == True and postgresql_with_zabbix_monitoring
 
 - name: Update PostgreSQL configuration
   template:
