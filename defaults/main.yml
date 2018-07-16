@@ -85,6 +85,13 @@ postgresql_lc_time: '{{ postgresql_lc_messages }}'
 
 postgresql_default_text_search_config: pg_catalog.english
 
+postgresql_data_dir: '/var/lib/postgresql/{{ postgresql_version }}/main'
+postgresql_bin_path: '/usr/lib/postgresql/{{ postgresql_version }}/bin'
+postgresql_config_path: '/etc/postgresql/{{ postgresql_version }}/main'
+
+postgresql_user: postgres
+postgresql_group: postgres
+
 # Users.
 postgresql_users: []
 

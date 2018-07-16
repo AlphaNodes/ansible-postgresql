@@ -43,7 +43,24 @@
   template:
     src: pg_hba.j2
     dest: '/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf'
+    owner: '{{ postgresql_user }}'
+    group: '{{ postgresql_group }}'
+    mode: 0600
   notify: restart postgresql
+
+- name: Check if PostgreSQL database is initialized.
+  stat:
+    path: "{{ postgresql_data_dir }}/PG_VERSION"
+  register: pgdata_dir_version
+
+- name: Ensure PostgreSQL database is initialized.
+  command: "{{ postgresql_bin_path }}/initdb -D {{ postgresql_data_dir }}"
+  when: not pgdata_dir_version.stat.exists
+  become: yes
+  become_user: "{{ postgresql_user }}"
+  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
+  vars:
+    ansible_ssh_pipelining: true
 
 # see https://www.postgresql.org/docs/9.6/static/kernel-resources.html
 - name: Setup sysctl vm.overcommit_memory for more robust system behavior
