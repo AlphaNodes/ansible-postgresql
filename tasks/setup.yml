@@ -3,9 +3,8 @@
 
 - name: Be sure PostgreSQL are installed
   apt:
-    name: '{{ item }}'
+    name: '{{ postgresql_packages }}'
     state: present
-  with_items: '{{ postgresql_packages }}'
 
 - include_tasks: postgis.yml
   when: postgresql_with_postgis

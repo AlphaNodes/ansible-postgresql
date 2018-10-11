@@ -1,6 +1,5 @@
 
 - name: Be sure PostGIS packages are installed
   apt:
-    name: '{{ item }}'
+    name: '{{ postgresql_postgis_packages }}'
     state: present
-  with_items: '{{ postgresql_postgis_packages }}'

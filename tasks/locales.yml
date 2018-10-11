@@ -4,7 +4,7 @@
     state: present
   register: locale_gen_result
   when: item != 'C'
-  with_items:
+  loop:
     - '{{ postgresql_lc_messages }}'
     - '{{ postgresql_lc_monetary }}'
     - '{{ postgresql_lc_numeric }}'
