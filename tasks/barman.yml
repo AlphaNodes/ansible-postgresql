@@ -10,17 +10,21 @@
     user: postgres
     key: '{{ postgresql_barman_ssh_public_key }}'
     state: present
-  when: postgresql_barman_ssh_public_key != ''
+  when: postgresql_barman_ssh_public_key
 
 - name: Check if ssh private key for barman server is provided by host
-  local_action: stat path="{{ playbook_dir }}/files/barman_access/{{ inventory_hostname }}_id_rsa"
+  stat:
+    path: "{{ playbook_dir }}/files/barman_access/{{ inventory_hostname }}_id_rsa"
   ignore_errors: True
   register: key_by_host
+  delegate_to: localhost
 
 - name: Check if ssh private key for barman server is provided by group
-  local_action: stat path="{{ playbook_dir }}/files/barman_access/{{ group_names[0] }}_id_rsa"
+  stat:
+    path: "{{ playbook_dir }}/files/barman_access/{{ group_names[0] }}_id_rsa"
   ignore_errors: True
   register: key_by_group
+  delegate_to: localhost
 
 - name: Install ssh private key for barman server by host (if provided)
   copy:
