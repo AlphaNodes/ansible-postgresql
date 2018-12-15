@@ -71,10 +71,4 @@
     reload: yes
   when: ansible_virtualization_type == 'kvm' or ansible_virtualization_type == 'VMware'
 
-- name: Install PostgreSQL scripts to /usr/local/bin
-  copy:
-    src: bin/
-    dest: /usr/local/bin/
-    owner: root
-    group: root
-    mode: 0755
+- include_tasks: postgresqltuner.yml

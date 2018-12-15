@@ -1,0 +1,14 @@
+- name: Calc file name for download cache - {{ ansible_tmp }}
+  set_fact: tmp_file="/tmp/postgresqltuner-{{ ansible_date_time.date }}.pl"
+
+- name: Download postgresqltuner.pl on local to cache
+  local_action:
+    module: get_url
+    url: https://raw.githubusercontent.com/jfcoz/postgresqltuner/master/postgresqltuner.pl
+    dest: '{{ tmp_file }}'
+
+- name: Install latest postgresqltuner.pl
+  copy:
+    src: '{{ tmp_file }}'
+    dest: '/usr/local/bin/postgresqltuner.pl'
+    mode: 0755
