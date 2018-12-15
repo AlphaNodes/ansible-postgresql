@@ -10,7 +10,7 @@
     user: postgres
     key: '{{ postgresql_barman_ssh_public_key }}'
     state: present
-  when: postgresql_barman_ssh_public_key
+  when: postgresql_barman_ssh_public_key != ''
 
 - name: Check if ssh private key for barman server is provided by host
   stat:
