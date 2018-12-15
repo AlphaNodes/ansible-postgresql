@@ -1,4 +1,3 @@
-
 # do not remove postgresql_pgbadger_packages (because it is used by other programs)
 - name: Remove pgBadger package
   apt:
