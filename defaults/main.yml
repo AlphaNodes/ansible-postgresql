@@ -1,8 +1,9 @@
 # defaults file for postgresql
 ---
 
+# Select postgresql version: 9.6, 10, 11
 postgresql_version: 9.6
-postgresql_postgis_version: 2.4
+postgresql_postgis_version: 2.5
 
 # libdbd-pg-perl is required for tuning script
 postgresql_packages:
@@ -53,14 +54,16 @@ postgresql_synchronous_commit: yes
 postgresql_deadlock_timeout: 1s
 postgresql_checkpoint_timeout: 15min
 postgresql_max_wal_size: 2GB
-postgresql_min_wal_size: 1GB
+postgresql_min_wal_size: 80MB
 # (checkpoint_timeout - 2min) / checkpoint_timeout)
 # see https://blog.2ndquadrant.com/basics-of-tuning-checkpoints/
 postgresql_checkpoint_completion_target: 0.86
-postgresql_wal_buffers: 7864kB
+postgresql_wal_buffers: -1
 
-# only used for postgresql version 9.3
-postgresql_checkpoint_segments: 16
+postgresql_ssl_ca_file: ''
+postgresql_ssl_cert_file: '/etc/ssl/certs/ssl-cert-snakeoil.pem'
+postgresql_ssl_crl_file: ''
+postgresql_ssl_key_file: '/etc/ssl/private/ssl-cert-snakeoil.key'
 
 postgresql_log_destination: stderr
 postgresql_log_statement: none
