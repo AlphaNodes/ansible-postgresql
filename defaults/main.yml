@@ -2,7 +2,7 @@
 ---
 
 # Select postgresql version: 9.6, 10 or 11
-postgresql_version: 9.6
+postgresql_version: 11
 postgresql_postgis_version: 2.5
 
 # libdbd-pg-perl is required for tuning script
