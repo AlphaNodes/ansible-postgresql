@@ -5,7 +5,6 @@ language: ruby
 env:
   - distro: debian8
   - distro: debian9
-  - distro: debian10
   - distro: ubuntu1604
   - distro: ubuntu1804
 
