@@ -27,7 +27,8 @@ postgresql_with_postgis: no
 postgresql_postgis_packages:
   - postgresql-{{ postgresql_version }}-postgis-{{ postgresql_postgis_version }}
 
-postgresql_with_zabbix_monitoring: yes
+# enables zabbix monitoring
+zabbix_monitoring: no
 
 postgresql_access_hosts: [ ]
 

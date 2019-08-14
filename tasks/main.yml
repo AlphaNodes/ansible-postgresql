@@ -10,6 +10,11 @@
 - include_tasks: databases.yml
   tags: postgresql
 
-- include_tasks: barman.yml
+- name: Include barman tasks
+  include_tasks: barman.yml
   tags: postgresql,barman
   when: postgresql_with_barman
+
+- name: Include zabbix tasks
+  include_tasks: zabbix.yml
+  tags: zabbix,zabbix-agent
