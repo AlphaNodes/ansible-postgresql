@@ -47,7 +47,7 @@ ident_file = '{{ postgresql_config_path }}/pg_ident.conf'	# ident configuration 
 					# (change requires restart)
 
 # If external_pid_file is not explicitly set, no extra PID file is written.
-external_pid_file = '/var/run/postgresql/{{ postgresql_version }}-main.pid'			# write an extra PID file
+external_pid_file = '/run/postgresql/{{ postgresql_version }}-main.pid'			# write an extra PID file
 					# (change requires restart)
 
 
@@ -64,7 +64,7 @@ listen_addresses = '{{ postgresql_listen_addresses }}'		# what IP address(es) to
 port = {{ postgresql_port }}				# (change requires restart)
 max_connections = {{ postgresql_max_connections }}			# (change requires restart)
 #superuser_reserved_connections = 3	# (change requires restart)
-unix_socket_directories = '/var/run/postgresql'	# comma-separated list of directories
+unix_socket_directories = '/run/postgresql'	# comma-separated list of directories
 					# (change requires restart)
 #unix_socket_group = ''			# (change requires restart)
 #unix_socket_permissions = 0777		# begin with 0 to use octal notation
@@ -503,7 +503,7 @@ cluster_name = '{{ postgresql_cluster_name }}'			# added to process titles if no
 #track_io_timing = off
 #track_functions = none			# none, pl, all
 #track_activity_query_size = 1024	# (change requires restart)
-stats_temp_directory = '/var/run/postgresql/{{ postgresql_version }}-main.pg_stat_tmp'
+stats_temp_directory = '/run/postgresql/{{ postgresql_version }}-main.pg_stat_tmp'
 
 
 # - Monitoring -
