@@ -64,7 +64,7 @@
 - name: Setup sysctl vm.overcommit_memory for more robust system behavior
   sysctl:
     name: vm.overcommit_memory
-    value: 2
+    value: '2'
     sysctl_set: yes
     state: present
     reload: yes
