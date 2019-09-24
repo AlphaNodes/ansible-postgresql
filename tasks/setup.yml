@@ -60,7 +60,7 @@
   vars:
     ansible_ssh_pipelining: true
 
-# see https://www.postgresql.org/docs/9.6/static/kernel-resources.html
+# see https://www.postgresql.org/docs/11/kernel-resources.html
 - name: Setup sysctl vm.overcommit_memory for more robust system behavior
   sysctl:
     name: vm.overcommit_memory
@@ -68,7 +68,7 @@
     sysctl_set: yes
     state: present
     reload: yes
-  when: ansible_virtualization_type == 'kvm' or ansible_virtualization_type == 'VMware'
+  when: ansible_virtualization_type == 'kvm' or ansible_virtualization_type == 'VMware' or ansible_virtualization_type == 'VirtualPC'
 
 - name: Include postgresqltuner tasks
   include_tasks: postgresqltuner.yml

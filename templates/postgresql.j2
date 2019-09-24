@@ -117,7 +117,7 @@ ssl_key_file = '{{ postgresql_ssl_key_file }}'
 
 shared_buffers = {{ postgresql_shared_buffers }}			# min 128kB
 					# (change requires restart)
-#huge_pages = try			# on, off, or try
+huge_pages = {{ postgresql_huge_pages }}			# on, off, or try
 					# (change requires restart)
 #temp_buffers = 8MB			# min 800kB
 #max_prepared_transactions = 0		# zero disables the feature
@@ -182,7 +182,7 @@ dynamic_shared_memory_type = posix	# the default is the first option
 
 # - Settings -
 
-wal_level = {{ 'replica' if postgresql_with_barman else 'minimal' }}			# minimal, replica, or logical
+wal_level = {{ postgresql_wal_level }}			# minimal, replica, or logical
 					# (change requires restart)
 #fsync = on				# flush data to disk for crash safety
 					# (turning this off can cause
