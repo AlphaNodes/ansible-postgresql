@@ -38,7 +38,7 @@ postgresql_access_hosts: [ ]
 # buffers. Default value is insanely small.
 # If PostgreSQL is the only thing we run on
 # the machine, set it to 1/4 of available RAM
-postgresql_shared_buffers: 512MB
+postgresql_shared_buffers: 256MB
 # How much memory in total our PostgreSQL can use.
 # Twice of shared_buffers seems good.
 postgresql_effective_cache_size: 1GB
