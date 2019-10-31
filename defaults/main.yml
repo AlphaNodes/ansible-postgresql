@@ -1,14 +1,13 @@
 # defaults file for postgresql
 ---
 
-# Select postgresql version: 9.6, 10 or 11
+# Select postgresql version: 9.6, 10, 11 or 12
 postgresql_version: 11
 postgresql_postgis_version: 2.5
 
 # libdbd-pg-perl is required for tuning script
 postgresql_packages:
   - postgresql-{{ postgresql_version }}
-  - postgresql-contrib-{{ postgresql_version }}
   - libdbd-pg-perl
 
 # nginx is required, if postgresql_with_pgbadger: yes
