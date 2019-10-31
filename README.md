@@ -13,7 +13,7 @@ Installs PostgreSQL server on Debian and Ubuntu servers.
 
     - hosts: db-server
       vars:
-        postgresql_version: 9.6
+        postgresql_version: 12
         postgresql_with_postgis: yes
       roles:
         - AlphaNodes.postgresql
