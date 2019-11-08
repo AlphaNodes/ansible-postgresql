@@ -27,8 +27,14 @@ postgresql_postgis_packages:
   - postgresql-{{ postgresql_version }}-postgis-{{ postgresql_postgis_version }}
 
 # enables zabbix monitoring
+
+# overwrite it from hosts_vars
+
 zabbix_monitoring: no
 zabbix_agent_home: /var/lib/zabbix
+postgresql_password_salt: "{{ common_password_salt | default('') }}"
+postgresql_zabbix_user: zbx_monitor
+postgresql_zabbix_password: '{{ [ansible_machine_id, ansible_hostname, postgresql_password_salt, "zabbix-agent-postgresql"] | join | hash("md5") }}'
 
 postgresql_access_hosts: [ ]
 
