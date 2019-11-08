@@ -7,8 +7,8 @@
       set_fact: zabbix_agentd_dir=/etc/zabbix/zabbix_agentd.{{ 'd' if zabbix_use_repo is defined and zabbix_use_repo else 'conf.d' }}
 
     - name: Install PostgreSQL zabbix configuration
-      copy:
-        src: zabbix/userparameter_pgsql.conf
+      template:
+        src: zabbix/userparameter_pgsql.conf.j2
         dest: '{{ zabbix_agentd_dir }}/userparameter_pgsql.conf'
       notify: restart zabbix-agent
       when: zabbix_monitoring and (zabbix_agent_remove is undefined or not zabbix_agent_remove)
@@ -21,3 +21,15 @@
       when: not zabbix_monitoring
 
   when: zabbix_config_exists.stat.exists
+
+- name: Install zabbix sql postgresql files
+  synchronize:
+    src: zabbix/postgresql
+    dest: '{{ zabbix_agent_home }}'
+  when: zabbix_monitoring
+
+- name: Remove zabbix sql postgresql files
+  file:
+    path: '{{ zabbix_agent_home }}/postgresql'
+    state: absent
+  when: not zabbix_monitoring

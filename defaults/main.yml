@@ -28,6 +28,7 @@ postgresql_postgis_packages:
 
 # enables zabbix monitoring
 zabbix_monitoring: no
+zabbix_agent_home: /var/lib/zabbix
 
 postgresql_access_hosts: [ ]
 
