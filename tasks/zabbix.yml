@@ -22,7 +22,7 @@
 
   when: zabbix_config_exists.stat.exists
 
-- name: Add zabbix PostgreSQL role
+- name: Add zabbix PostgreSQL 9.6 user
   become_user: postgres
   become: yes
   postgresql_user:
@@ -31,6 +31,18 @@
     priv: 'pg_stat_database:SELECT'
     state: present
   no_log: true
+  when: postgresql_version == '9.6'
+
+- name: Add zabbix PostgreSQL user
+  become_user: postgres
+  become: yes
+  postgresql_user:
+    name: '{{ postgresql_zabbix_user }}'
+    password: '{{ postgresql_zabbix_password }}'
+    role_attr_flags: pg_monitor
+    state: present
+  no_log: true
+  when: postgresql_version != '9.6'
 
 - name: Install zabbix sql PostgreSQL files
   synchronize:
@@ -38,7 +50,7 @@
     dest: '{{ zabbix_agent_home }}'
   when: zabbix_monitoring
 
-- name: Remove zabbix PostgreSQL role
+- name: Remove zabbix PostgreSQL user
   become_user: postgres
   become: yes
   postgresql_user:
