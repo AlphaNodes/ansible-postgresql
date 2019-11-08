@@ -40,8 +40,6 @@
   postgresql_user:
     name: '{{ postgresql_zabbix_user }}'
     password: '{{ postgresql_zabbix_password }}'
-    # @TODO: role_attr_flags: pg_monitor does not work
-    priv: 'ALL:SELECT'
     state: present
   when: postgresql_version != '9.6'
 
