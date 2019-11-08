@@ -41,7 +41,6 @@
     password: '{{ postgresql_zabbix_password }}'
     role_attr_flags: pg_monitor
     state: present
-  no_log: true
   when: postgresql_version != '9.6'
 
 - name: Install zabbix sql PostgreSQL files
