@@ -58,6 +58,8 @@
   synchronize:
     src: zabbix/postgresql
     dest: '{{ zabbix_agent_home }}'
+    group: no
+    owner: no
   when: zabbix_monitoring
 
 - name: Remove zabbix PostgreSQL user
