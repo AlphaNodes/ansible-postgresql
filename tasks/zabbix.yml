@@ -62,6 +62,15 @@
     owner: no
   when: zabbix_monitoring
 
+# @TODO: this does not work with synchronize at the moment
+- name: Set owner for sql PostgreSQL files
+  file:
+    path: '{{ zabbix_agent_home }}/postgresql'
+    state: directory
+    recurse: yes
+    owner: zabbix
+    group: zabbix
+
 - name: Remove zabbix PostgreSQL user
   become_user: postgres
   become: yes
