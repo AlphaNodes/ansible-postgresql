@@ -30,13 +30,13 @@
     password: '{{ postgresql_zabbix_password }}'
     state: present
   no_log: yes
-  when: postgresql_version == '9.6'
+  when: zabbix_monitoring and postgresql_version == '9.6'
 
 - name: Set zabbix PostgreSQL 9.6 grant
   become_user: postgres
   become: yes
   command: psql postgres -c 'GRANT SELECT ON pg_stat_database TO {{ postgresql_zabbix_user }};'
-  when: postgresql_version == '9.6'
+  when: zabbix_monitoring and postgresql_version == '9.6'
 
 - name: Add zabbix PostgreSQL user
   become_user: postgres
@@ -46,13 +46,13 @@
     password: '{{ postgresql_zabbix_password }}'
     state: present
   no_log: yes
-  when: postgresql_version != '9.6'
+  when: zabbix_monitoring and postgresql_version != '9.6'
 
 - name: Set zabbix PostgreSQL grant
   become_user: postgres
   become: yes
   command: psql postgres -c 'GRANT pg_monitor TO {{ postgresql_zabbix_user }};'
-  when: postgresql_version != '9.6'
+  when: zabbix_monitoring and postgresql_version != '9.6'
 
 - name: Install zabbix sql PostgreSQL files
   synchronize:
@@ -70,6 +70,7 @@
     recurse: yes
     owner: zabbix
     group: zabbix
+  when: zabbix_monitoring
 
 - name: Remove zabbix PostgreSQL user
   become_user: postgres
