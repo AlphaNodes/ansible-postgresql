@@ -108,10 +108,13 @@ postgresql_config_path: '/etc/postgresql/{{ postgresql_version }}/main'
 postgresql_user: postgres
 postgresql_group: postgres
 
-# Users.
+# Users
 postgresql_users: []
 
-# Databases.
+# Privileges
+postgresql_privileges: []
+
+# Databases
 postgresql_databases: []
 
 postgresql_with_barman: no
