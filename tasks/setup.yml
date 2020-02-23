@@ -11,11 +11,6 @@
     name: "{{ 'python3-psycopg2' if ansible_python_interpreter is defined and 'python3' in ansible_python_interpreter else 'python-psycopg2' }}"
     state: present
 
-- name: Be sure psycopg2 is installed
-  apt:
-    name: "{{ 'python3-psycopg2' if ansible_python_interpreter is defined and 'python3' in ansible_python_interpreter else 'python-psycopg2' }}"
-    state: present
-
 - include_tasks: postgis.yml
   when: postgresql_with_postgis
 
