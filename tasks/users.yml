@@ -5,7 +5,7 @@
   postgresql_user:
     name: "{{ item.name }}"
     password: "{{ item.password | default(omit) }}"
-    role_attr_flags: "{{ item.role_flags | default('NOSUPERUSER,CREATEDB') }}"
+    role_attr_flags: "{{ item.role_attr_flags | default('NOSUPERUSER,CREATEDB') }}"
     state: "{{ item.state | default('present') }}"
   loop: "{{ postgresql_users }}"
   no_log: yes
