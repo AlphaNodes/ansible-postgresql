@@ -3,10 +3,11 @@ services: docker
 language: ruby
 
 env:
-  - distro: debian8
   - distro: debian9
+  - distro: debian10
   - distro: ubuntu1604
   - distro: ubuntu1804
+  - distro: ubuntu2004
 
 script:
   # Configure test script so we can run extra tests after playbook is run.
