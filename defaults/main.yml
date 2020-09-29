@@ -69,9 +69,16 @@ postgresql_checkpoint_completion_target: 0.86
 postgresql_wal_level: replica
 postgresql_wal_buffers: -1
 
-# both values should be 1.0, if postgresql server has ssd drives
 postgresql_seq_page_cost: '1.0'
+# see https://pgtune.leopard.in.ua/#/
+# for HDD:
+#  random_page_cost = 4.0
+#  effective_io_concurrency = 2
+# for SSD:
+#  random_page_cost = 1.1
+#  effective_io_concurrency = 200
 postgresql_random_page_cost: '4.0'
+postgresql_effective_io_concurrency: '2'
 
 postgresql_ssl_ca_file: ''
 postgresql_ssl_cert_file: '/etc/ssl/certs/ssl-cert-snakeoil.pem'

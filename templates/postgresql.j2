@@ -164,7 +164,7 @@ dynamic_shared_memory_type = posix	# the default is the first option
 
 # - Asynchronous Behavior -
 
-#effective_io_concurrency = 1		# 1-1000; 0 disables prefetching
+effective_io_concurrency = {{ postgresql_effective_io_concurrency }}		# 1-1000; 0 disables prefetching
 #max_worker_processes = 8		# (change requires restart)
 #max_parallel_maintenance_workers = 2	# taken from max_parallel_workers
 #max_parallel_workers_per_gather = 2	# taken from max_parallel_workers
@@ -313,8 +313,8 @@ max_replication_slots = {{ '10' if postgresql_with_barman else '0' }}	# max numb
 
 # - Planner Cost Constants -
 
-#seq_page_cost = 1.0			# measured on an arbitrary scale
-#random_page_cost = 4.0			# same scale as above
+seq_page_cost = {{ postgresql_seq_page_cost }}			# measured on an arbitrary scale
+random_page_cost = {{ postgresql_random_page_cost }}			# same scale as above
 #cpu_tuple_cost = 0.01			# same scale as above
 #cpu_index_tuple_cost = 0.005		# same scale as above
 #cpu_operator_cost = 0.0025		# same scale as above
