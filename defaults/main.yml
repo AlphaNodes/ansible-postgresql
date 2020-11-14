@@ -1,9 +1,9 @@
 # defaults file for postgresql
 ---
 
-# Select postgresql version: 9.6, 10, 11 or 12
+# Select postgresql version: 9.6, 10, 11, 12 or 13
 postgresql_version: '12'
-postgresql_postgis_version: '2.5'
+postgresql_postgis_version: '3'
 
 # libdbd-pg-perl is required for tuning script
 postgresql_packages:
@@ -97,6 +97,10 @@ postgresql_log_disconnections: no
 postgresql_log_lock_waits: no
 postgresql_log_temp_files: -1
 postgresql_log_autovacuum_min_duration: -1
+
+# or Europe/Berlin
+postgresql_log_timezone: localtime
+postgresql_timezone: localtime
 
 postgresql_cluster_name: ''
 
